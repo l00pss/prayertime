@@ -5,5 +5,5 @@ import java.io.IOException;
 import java.util.Optional;
 
 public interface JsonHandlerService {
-    Optional<JsonStructure> readJsonFromUrl() throws IOException;
+    JsonStructure readJsonFromUrl(String URL_PATH) throws IOException;
 }

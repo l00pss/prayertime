@@ -8,9 +8,7 @@ import java.util.Optional;
 
 public interface CheckCityList {
 
-    Optional<HashSet<Integer>> getListOfCity();
-
-    boolean containCityInList(final int cityOfIndex) throws IndexOfCityNotFoundException;
+    HashSet<Integer> getListOfCity();
 
 
 }

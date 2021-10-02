@@ -30,6 +30,6 @@ public class PrayerTimeWsApplication {
 
     @Bean
     public ClientServer clientServer(){
-        return new ClientManager();
+        return null;
     }
 }
