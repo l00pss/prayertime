@@ -3,10 +3,6 @@ package org.namazvaxti.prayertimews.client.concretes;
 import org.namazvaxti.prayertimews.client.abstracts.CheckCityList;
 import org.namazvaxti.prayertimews.client.abstracts.ClientServer;
 import org.namazvaxti.prayertimews.client.json.abstracts.JsonHandlerService;
-import org.namazvaxti.prayertimews.entities.concretes.time.BaseTime;
-import org.namazvaxti.prayertimews.entities.concretes.time.City;
-import org.namazvaxti.prayertimews.entities.concretes.time.CityBean;
-import org.namazvaxti.prayertimews.entities.concretes.time.ExtraTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
