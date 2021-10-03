@@ -2,6 +2,8 @@ package org.namazvaxti.prayertimews.business.concretes;
 
 import org.namazvaxti.prayertimews.business.abstracts.TimeService;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
+import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
+import org.namazvaxti.prayertimews.core.utilities.exceptions.UnknowException;
 import org.namazvaxti.prayertimews.core.utilities.messages.success.UserSuccessMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.success.SuccessDataResult;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.TimeRepository;
@@ -23,7 +25,16 @@ public class TimeManager implements TimeService {
 
 
     @Override
-    public SuccessDataResult<JsonStructure> getAllDataAsJson(int indexOfCity) throws DataNotFoundException {
+    public SuccessDataResult<JsonStructure> getAllDataAsJson(Integer indexOfCity) throws DataNotFoundException, NullValueException {
         return new SuccessDataResult<>(this.timeRepository.getAllDataAsJson(indexOfCity), UserSuccessMessages.FIND_BY_ID.getValue());
     }
+
+    @Override
+    public SuccessDataResult<JsonStructure> getListOfCities() throws UnknowException {
+        JsonStructure jsonStructure = this.timeRepository.getListOfCities();
+        if(jsonStructure==null) throw new UnknowException();
+        return new SuccessDataResult<>(jsonStructure,UserSuccessMessages.SAVE.getValue());
+    }
+
+
 }

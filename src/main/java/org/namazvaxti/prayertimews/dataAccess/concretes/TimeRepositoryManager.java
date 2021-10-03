@@ -1,17 +1,23 @@
 package org.namazvaxti.prayertimews.dataAccess.concretes;
 
 import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
+import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
 import org.namazvaxti.prayertimews.core.utilities.messages.error.UserErrorMessages;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.CheckerCurrentData;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.ReadDataFromJson;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.TimeRepository;
 import org.namazvaxti.prayertimews.entities.concretes.time.CityBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonReader;
 import javax.json.JsonStructure;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +37,8 @@ public class TimeRepositoryManager implements TimeRepository {
         this.cityBean = cityBean;
     }
 
-    private JsonStructure getAllData(int indexOfCity) throws DataNotFoundException {
+    private JsonStructure getAllData(Integer indexOfCity) throws DataNotFoundException, NullValueException {
+        if (indexOfCity == null)throw new NullValueException();
         if(checkerCurrentData.hasDataInLocalRepository(indexOfCity)
                 && checkerCurrentData.isCurrentDataInLocalRepository(indexOfCity))
             return readDataFromJson.readAllDataFromLocalRepository(indexOfCity);
@@ -41,12 +48,25 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
     @Override
-    public JsonStructure getAllDataAsJson(int indexOfCity) throws DataNotFoundException {
+    public JsonStructure getAllDataAsJson(Integer indexOfCity) throws DataNotFoundException, NullValueException {
         return getAllData(indexOfCity);
     }
 
     @Override
-    public CityBean getToDayDates(int idexOfCity) throws DataNotFoundException {
+    public JsonStructure getListOfCities() {
+        try(
+                Reader reader = new FileReader("src/main/java/org/namazvaxti/prayertimews/client/helper/ListOfCity.json");
+                JsonReader jsonReader = Json.createReader(reader)
+        ) {
+            return jsonReader.read().asJsonArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public CityBean getToDayDates(int idexOfCity) throws DataNotFoundException, NullValueException {
         JsonStructure jsonStructure = getAllData(idexOfCity);
         //cityBean.setDayOfYear(jsonStructure.);
         return null;

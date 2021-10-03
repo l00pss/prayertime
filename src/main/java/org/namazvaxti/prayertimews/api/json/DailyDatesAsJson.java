@@ -2,7 +2,6 @@ package org.namazvaxti.prayertimews.api.json;
 
 import org.namazvaxti.prayertimews.business.abstracts.TimeService;
 import org.namazvaxti.prayertimews.client.abstracts.ClientServer;
-import org.namazvaxti.prayertimews.client.concretes.ClientManager;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.IndexOfCityNotFoundException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
@@ -40,9 +39,14 @@ public class DailyDatesAsJson {
         clientServer.writerToLocalRepository();
     }
 
+    @GetMapping("/citylist")
+    public ResponseEntity<DataResult> getListOfCities(){
+        return new ResponseEntity<DataResult>(HttpStatus.ACCEPTED);
+    }
+
     @SuppressWarnings("unchecked")
-    @GetMapping("/dailytime/{indexOfCity}")
-    public ResponseEntity<DataResult<JsonStructure>> getAllDataAsJson(@Param("indexOfCity") int indexOfCity) throws DataNotFoundException {
+    @GetMapping("/allDataAsJson/{indexOfCity}")
+    public ResponseEntity<DataResult<JsonStructure>> getAllDataAsJson(@Param("indexOfCity") Integer indexOfCity) throws DataNotFoundException, NullValueException {
         return new ResponseEntity<DataResult<JsonStructure>>(timeService.getAllDataAsJson(indexOfCity), HttpStatus.OK);
     }
 

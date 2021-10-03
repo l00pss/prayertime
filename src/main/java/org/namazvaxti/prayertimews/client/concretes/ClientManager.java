@@ -50,7 +50,7 @@ public class ClientManager implements ClientServer {
             String path = entry.getValue();
             JsonStructure jsonStructure = jsonHandlerService.readJsonFromUrl(URL_ADDRESS.replace("CCCC", path));
             writerJson(jsonStructure,DATA_PATH + path + ".json");
-            System.err.println(entry.getKey());
+            System.err.println("Yüklənir... "+entry.getKey());
         }
     }
 
