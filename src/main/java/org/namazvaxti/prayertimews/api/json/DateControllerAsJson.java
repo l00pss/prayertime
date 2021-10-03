@@ -23,14 +23,14 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RestController
-@RequestMapping("api/json/1.0/today")
-public class DailyDatesAsJson {
+@RequestMapping("api/dates/json/1.0")
+public class DateControllerAsJson {
 
     private TimeService timeService;
     private ClientServer clientServer;
 
     @Autowired
-    public DailyDatesAsJson(ClientServer clientServer ,TimeService timeService) {
+    public DateControllerAsJson(ClientServer clientServer , TimeService timeService) {
         this.clientServer = clientServer;
         this.timeService = timeService;
     }
@@ -67,6 +67,8 @@ public class DailyDatesAsJson {
     public ResponseEntity<List<CityBean>> getWeeklyDates(@Param("indexOfCity") Integer indexOfCity){
         return new ResponseEntity<List<CityBean>>(new ArrayList<CityBean>(),HttpStatus.OK);
     }
+
+
 
 
     @ExceptionHandler(IndexOfCityNotFoundException.class)
