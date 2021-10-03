@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/dailyword/json/1.0")
-public class DailyWordController {
+public class DailyWordControllerAsJson {
 
 }

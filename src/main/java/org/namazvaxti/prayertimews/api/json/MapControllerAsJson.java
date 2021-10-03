@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/map/json/1.0")
-public class MosqueLocationController {
+public class MapControllerAsJson {
 
 }
