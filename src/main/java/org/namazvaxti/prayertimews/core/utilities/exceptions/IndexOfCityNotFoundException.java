@@ -1,4 +1,4 @@
 package org.namazvaxti.prayertimews.core.utilities.exceptions;
 
-public class IndexOfCityNotFoundException extends Exception{
+public class IndexOfCityNotFoundException extends BaseException{
 }

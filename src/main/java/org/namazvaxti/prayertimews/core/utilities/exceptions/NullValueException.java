@@ -1,4 +1,4 @@
 package org.namazvaxti.prayertimews.core.utilities.exceptions;
 
-public class NullValueException extends Exception{
+public class NullValueException extends BaseException{
 }

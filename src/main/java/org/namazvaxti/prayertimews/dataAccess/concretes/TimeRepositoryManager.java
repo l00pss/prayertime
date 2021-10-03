@@ -2,7 +2,7 @@ package org.namazvaxti.prayertimews.dataAccess.concretes;
 
 import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
-import org.namazvaxti.prayertimews.core.utilities.messages.error.UserErrorMessages;
+import org.namazvaxti.prayertimews.core.utilities.messages.error.ErrorMessages;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.CheckerCurrentData;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.ReadDataFromJson;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.TimeRepository;
@@ -10,9 +10,7 @@ import org.namazvaxti.prayertimews.entities.concretes.time.CityBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonReader;
 import javax.json.JsonStructure;
 import java.io.FileReader;
@@ -43,7 +41,7 @@ public class TimeRepositoryManager implements TimeRepository {
                 && checkerCurrentData.isCurrentDataInLocalRepository(indexOfCity))
             return readDataFromJson.readAllDataFromLocalRepository(indexOfCity);
         else {
-            throw new DataNotFoundException(UserErrorMessages.DATA_NOT_FOUND.getValue());
+            throw new DataNotFoundException(ErrorMessages.DATA_NOT_FOUND.getValue());
         }
     }
 
