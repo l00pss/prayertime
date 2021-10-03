@@ -22,11 +22,13 @@ public class TimeRepositoryManager implements TimeRepository {
 
     private CheckerCurrentData checkerCurrentData;
     private ReadDataFromJson readDataFromJson;
+    private CityBean cityBean;
 
     @Autowired
-    public TimeRepositoryManager(CheckerCurrentData checkerCurrentData, ReadDataFromJson readDataFromJson) {
+    public TimeRepositoryManager(CheckerCurrentData checkerCurrentData, ReadDataFromJson readDataFromJson,CityBean cityBean) {
         this.checkerCurrentData = checkerCurrentData;
         this.readDataFromJson = readDataFromJson;
+        this.cityBean = cityBean;
     }
 
     private JsonStructure getAllData(int indexOfCity) throws DataNotFoundException {
@@ -39,9 +41,14 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
     @Override
+    public JsonStructure getAllDataAsJson(int indexOfCity) throws DataNotFoundException {
+        return getAllData(indexOfCity);
+    }
+
+    @Override
     public CityBean getToDayDates(int idexOfCity) throws DataNotFoundException {
         JsonStructure jsonStructure = getAllData(idexOfCity);
-
+        //cityBean.setDayOfYear(jsonStructure.);
         return null;
     }
 
