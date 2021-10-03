@@ -7,9 +7,10 @@ import org.namazvaxti.prayertimews.core.utilities.messages.Messages;
  * @author Vugar Mammadli
  */
 public enum UserErrorMessages implements Messages {
-    ERROR("Bilinməyən Xəta. Bir neçə dəqiqə sonra təkrar sınayın"),
-    NULL_VALUE("Boş dəyər keçilə bilməz"),
-    INVALID_CHARACTER("Icazə verilməyən sinvol istifadəsi");
+    ERROR("Bilinməyən Xəta. Bir neçə dəqiqə sonra təkrar cəhd edin!"),
+    NULL_VALUE("Boş dəyər keçilə bilməz!"),
+    INVALID_INDEX("Yanlış şəhər indeksi!"),
+    DATA_NOT_FOUND("İstənilən index üzrə məlumat tapılmadı!");
 
     private final String value;
     UserErrorMessages(String value) {

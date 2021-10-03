@@ -17,12 +17,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/json/1.0/today")
-public class TimeControllerToDayAsJson {
+public class DailyDatesAsJson {
 
     private TimeService timeService;
 
     @Autowired
-    public TimeControllerToDayAsJson(TimeService timeService) {
+    public DailyDatesAsJson(TimeService timeService) {
         this.timeService = timeService;
     }
 
@@ -40,7 +40,7 @@ public class TimeControllerToDayAsJson {
     @ExceptionHandler(IndexOfCityNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult indexOfCityNotFoundException(IndexOfCityNotFoundException exception){
-        return new ErrorDataResult(UserErrorMessages.INVALID_CHARACTER.getValue());
+        return new ErrorDataResult(UserErrorMessages.INVALID_INDEX.getValue());
     }
 
 

@@ -28,8 +28,4 @@ public class PrayerTimeWsApplication {
                 .build();
     }
 
-    @Bean
-    public ClientServer clientServer(){
-        return null;
-    }
 }
