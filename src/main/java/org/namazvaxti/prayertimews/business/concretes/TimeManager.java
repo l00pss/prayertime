@@ -1,8 +1,7 @@
 package org.namazvaxti.prayertimews.business.concretes;
 
 import org.namazvaxti.prayertimews.business.abstracts.TimeService;
-import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
-import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
+import org.namazvaxti.prayertimews.core.utilities.exceptions.BaseException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.UnknownException;
 import org.namazvaxti.prayertimews.core.utilities.messages.success.SuccessMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.success.SuccessDataResult;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.json.JsonStructure;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,19 +27,24 @@ public class TimeManager implements TimeService {
 
 
     @Override
-    public SuccessDataResult<JsonStructure> getAllDataAsJson(Integer indexOfCity) throws DataNotFoundException, NullValueException {
+    public SuccessDataResult<JsonStructure> getAllDataAsJson(Integer indexOfCity) throws BaseException{
         return new SuccessDataResult<>(this.timeRepository.getAllDataAsJson(indexOfCity), SuccessMessages.FIND_BY_INDEX.getValue());
     }
 
     @Override
-    public SuccessDataResult<JsonStructure> getListOfCities() throws UnknownException {
+    public SuccessDataResult<JsonStructure> getListOfCities() throws BaseException {
         JsonStructure jsonStructure = this.timeRepository.getListOfCities();
         if(jsonStructure==null) throw new UnknownException();
         return new SuccessDataResult<>(jsonStructure, SuccessMessages.OK.getValue());
     }
 
     @Override
-    public SuccessDataResult<CityBean> getToDayDates(Integer indexOfCity) {
+    public SuccessDataResult<CityBean> getDatesOfDay(Integer indexOfCity) throws BaseException{
+        return null;
+    }
+
+    @Override
+    public SuccessDataResult<CityBean> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException {
         return null;
     }
 

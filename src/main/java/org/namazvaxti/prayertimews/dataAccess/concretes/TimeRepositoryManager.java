@@ -64,24 +64,24 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
     @Override
-    public CityBean getToDayDates(int idexOfCity) throws DataNotFoundException, NullValueException {
+    public CityBean getDatesOfDay(Integer idexOfCity) throws DataNotFoundException, NullValueException {
         JsonStructure jsonStructure = getAllData(idexOfCity);
         //cityBean.setDayOfYear(jsonStructure.);
         return null;
     }
 
     @Override
-    public CityBean getChangeDayDates(int idexOfCity, Date date) {
+    public CityBean getDatesOfDay(Integer idexOfCity, Date date) {
         return null;
     }
 
     @Override
-    public List<CityBean> getWeeklyDates(int idexOfCity) {
+    public List<CityBean> getWeeklyDates(Integer idexOfCity) {
         return null;
     }
 
     @Override
-    public List<CityBean> getMonthlyDates(int idexOfCity) {
+    public List<CityBean> getMonthlyDates(Integer idexOfCity) {
         return null;
     }
 }
