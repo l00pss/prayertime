@@ -13,10 +13,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class ExtraTime {
 
-    @Column(name = "DAY_OF_YEAR")
-    private int dayOfYear;
-
-
     private String israk;
     private String dahve;
     private String kerahat;
@@ -27,5 +23,4 @@ public class ExtraTime {
     private String midnight;
     private String teheccud;
     private String seher;
-    private String qiblaClock;
 }

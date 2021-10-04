@@ -11,26 +11,22 @@ import java.util.List;
 @Component
 @Getter @Setter
 @NoArgsConstructor
-public class CityBean {
+public class City {
     private static final transient String countryName = "Azərbaycan";
 
-    private int dayOfYear;
+    private String dayOfYear;
     private String cityOfName;
-    private double qiblaAngle;
-    private double magdeg;
-    private Date todayDate;
-    private HijrahDate todayHijrahDate;
+    private String qiblaAngle;
+    private String magdeg;
     private BaseTime baseTime;
     private ExtraTime extraTime;
 
-    public CityBean(int dayOfYear, String cityOfName, double qiblaAngle, double magdeg, Date todayDate,
-                    HijrahDate todayHijrahDate, BaseTime baseTime,ExtraTime extraTime) {
+    public City(String dayOfYear, String cityOfName, String qiblaAngle, String magdeg,
+                BaseTime baseTime, ExtraTime extraTime) {
         this.dayOfYear = dayOfYear;
         this.cityOfName = cityOfName;
         this.qiblaAngle = qiblaAngle;
         this.magdeg = magdeg;
-        this.todayDate = todayDate;
-        this.todayHijrahDate = todayHijrahDate;
         this.baseTime = baseTime;
         this.extraTime = extraTime;
     }

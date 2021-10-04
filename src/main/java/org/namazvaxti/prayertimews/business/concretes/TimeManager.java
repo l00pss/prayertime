@@ -6,7 +6,7 @@ import org.namazvaxti.prayertimews.core.utilities.exceptions.UnknownException;
 import org.namazvaxti.prayertimews.core.utilities.messages.success.SuccessMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.success.SuccessDataResult;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.TimeRepository;
-import org.namazvaxti.prayertimews.entities.concretes.time.CityBean;
+import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,22 +39,22 @@ public class TimeManager implements TimeService {
     }
 
     @Override
-    public SuccessDataResult<CityBean> getDatesOfDay(Integer indexOfCity) throws BaseException{
+    public SuccessDataResult<City> getDatesOfDay(Integer indexOfCity) throws BaseException{
+        return new SuccessDataResult<>(this.timeRepository.getDatesOfDay(indexOfCity),SuccessMessages.OK.getValue());
+    }
+
+    @Override
+    public SuccessDataResult<City> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException {
         return null;
     }
 
     @Override
-    public SuccessDataResult<CityBean> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException {
+    public SuccessDataResult<List<City>> getWeeklyDates(Integer indexOfCity) {
         return null;
     }
 
     @Override
-    public SuccessDataResult<List<CityBean>> getWeeklyDates(Integer indexOfCity) {
-        return null;
-    }
-
-    @Override
-    public SuccessDataResult<List<CityBean>> getMonthDates(Integer indexOfCity) {
+    public SuccessDataResult<List<City>> getMonthDates(Integer indexOfCity) {
         return null;
     }
 

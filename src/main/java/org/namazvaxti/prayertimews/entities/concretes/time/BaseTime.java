@@ -14,8 +14,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class BaseTime {
 
-    private int dayOfYear;
-
+    private String dayOfYear;
+    private String todayDate;
+    private String todayHijrahDate;
+    private String qiblaClock;
     private String imsaq;
     private String sabah;
     private String gunes;

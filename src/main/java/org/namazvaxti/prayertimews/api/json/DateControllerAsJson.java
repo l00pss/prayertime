@@ -6,7 +6,7 @@ import org.namazvaxti.prayertimews.core.utilities.exceptions.*;
 import org.namazvaxti.prayertimews.core.utilities.messages.error.ErrorMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.DataResult;
 import org.namazvaxti.prayertimews.core.utilities.result.error.ErrorDataResult;
-import org.namazvaxti.prayertimews.entities.concretes.time.CityBean;
+import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,8 +41,8 @@ public class DateControllerAsJson {
     }
 
     @GetMapping("/citylist")
-    public ResponseEntity<DataResult> getListOfCities() throws BaseException {
-        return new ResponseEntity<DataResult>(this.timeService.getListOfCities(),HttpStatus.ACCEPTED);
+    public ResponseEntity<DataResult<JsonStructure>> getListOfCities() throws BaseException {
+        return new ResponseEntity<DataResult<JsonStructure>>(this.timeService.getListOfCities(),HttpStatus.ACCEPTED);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,19 +53,25 @@ public class DateControllerAsJson {
 
 
     @GetMapping("/todaydate/{indexOfCity}")
-    public ResponseEntity<CityBean> getDatesOfToDay(@Param("indexOfCity") Integer indexOfCity){
-        return new ResponseEntity<CityBean>(HttpStatus.OK);
+    public ResponseEntity<DataResult<City>> getDatesOfToDay(@Param("indexOfCity") Integer indexOfCity) throws BaseException {
+        return new ResponseEntity<DataResult<City>>(this.timeService.getDatesOfDay(indexOfCity),HttpStatus.OK);
     }
 
-    @PostMapping("/todaydate")
-    public ResponseEntity<Object> getDatesOfCurrentDay(@RequestParam("indexOfCity") Integer indexOfCity,
-                                                       @RequestParam("date") @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate date){
-        return new ResponseEntity<>(date,HttpStatus.OK);
+    @PostMapping("/currentdate")
+    public ResponseEntity<DataResult<City>> getDatesOfCurrentDay(@RequestParam("indexOfCity") Integer indexOfCity,
+                                                                 @RequestParam("date") @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate date){
+        return new ResponseEntity<DataResult<City>>(HttpStatus.OK);
     }
 
     @GetMapping("/weeklydates/{indexOfCity}")
-    public ResponseEntity<List<CityBean>> getWeeklyDates(@Param("indexOfCity") Integer indexOfCity){
-        return new ResponseEntity<List<CityBean>>(new ArrayList<CityBean>(),HttpStatus.OK);
+    public ResponseEntity<DataResult<List<City>>> getWeeklyDates(@Param("indexOfCity") Integer indexOfCity){
+        return new ResponseEntity<DataResult<List<City>>>(HttpStatus.OK);
+    }
+
+
+    @GetMapping("/monthlydates/{indexOfCity}")
+    public ResponseEntity<DataResult<List<City>>> getMonthlyDates(@Param("indexOfCity") Integer indexOfCity){
+        return new ResponseEntity<DataResult<List<City>>>(HttpStatus.OK);
     }
 
 
