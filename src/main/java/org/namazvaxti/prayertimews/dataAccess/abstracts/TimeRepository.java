@@ -1,6 +1,7 @@
 package org.namazvaxti.prayertimews.dataAccess.abstracts;
 
 import org.namazvaxti.prayertimews.core.utilities.exceptions.BaseException;
+import org.namazvaxti.prayertimews.entities.concretes.CityBean;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 
 import javax.json.JsonStructure;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface TimeRepository {
     JsonStructure getAllDataAsJson(Integer indexOfCity) throws BaseException;
-    JsonStructure getListOfCities();
+    List<CityBean> getListOfCities();
 
     City getDatesOfDay(Integer idexOfCity) throws BaseException;
     City getDatesOfDay(Integer idexOfCity, Date date);

@@ -6,6 +6,7 @@ import org.namazvaxti.prayertimews.core.utilities.exceptions.*;
 import org.namazvaxti.prayertimews.core.utilities.messages.error.ErrorMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.DataResult;
 import org.namazvaxti.prayertimews.core.utilities.result.error.ErrorDataResult;
+import org.namazvaxti.prayertimews.entities.concretes.CityBean;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -40,9 +41,10 @@ public class DateControllerAsJson {
         //clientServer.writerToLocalRepository();
     }
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/citylist")
-    public ResponseEntity<DataResult<JsonStructure>> getListOfCities() throws BaseException {
-        return new ResponseEntity<DataResult<JsonStructure>>(this.timeService.getListOfCities(),HttpStatus.ACCEPTED);
+    public ResponseEntity<DataResult<List<CityBean>>> getListOfCities() throws BaseException {
+        return new ResponseEntity<DataResult<List<CityBean>>>(this.timeService.getListOfCities(),HttpStatus.ACCEPTED);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,6 +54,7 @@ public class DateControllerAsJson {
     }
 
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/todaydate/{indexOfCity}")
     public ResponseEntity<DataResult<City>> getDatesOfToDay(@Param("indexOfCity") Integer indexOfCity) throws BaseException {
         return new ResponseEntity<DataResult<City>>(this.timeService.getDatesOfDay(indexOfCity),HttpStatus.OK);

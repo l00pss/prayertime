@@ -1,19 +1,27 @@
 package org.namazvaxti.prayertimews.entities.concretes;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+
+@Component
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Scope(scopeName = "prototype")
 public class CityBean {
     private int id;
     private int indexOfCity;
     private String nameOfCity;
 
-    public CityBean(int id, int indexOfCity, String nameOfCity) {
-        this.id = id;
-        this.indexOfCity = indexOfCity;
-        this.nameOfCity = nameOfCity;
+    @Override
+    public String toString() {
+        return "CityBean{" +
+                "id=" + id +
+                ", indexOfCity=" + indexOfCity +
+                ", nameOfCity='" + nameOfCity + '\'' +
+                '}';
     }
 }

@@ -6,6 +6,7 @@ import org.namazvaxti.prayertimews.core.utilities.exceptions.UnknownException;
 import org.namazvaxti.prayertimews.core.utilities.messages.success.SuccessMessages;
 import org.namazvaxti.prayertimews.core.utilities.result.success.SuccessDataResult;
 import org.namazvaxti.prayertimews.dataAccess.abstracts.TimeRepository;
+import org.namazvaxti.prayertimews.entities.concretes.CityBean;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,10 +33,10 @@ public class TimeManager implements TimeService {
     }
 
     @Override
-    public SuccessDataResult<JsonStructure> getListOfCities() throws BaseException {
-        JsonStructure jsonStructure = this.timeRepository.getListOfCities();
-        if(jsonStructure==null) throw new UnknownException();
-        return new SuccessDataResult<>(jsonStructure, SuccessMessages.OK.getValue());
+    public SuccessDataResult<List<CityBean>> getListOfCities() throws BaseException {
+        List<CityBean> listOfCities = this.timeRepository.getListOfCities();
+        if(listOfCities==null) throw new UnknownException();
+        return new SuccessDataResult<List<CityBean>>(listOfCities, SuccessMessages.OK.getValue());
     }
 
     @Override
