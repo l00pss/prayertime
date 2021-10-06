@@ -4,6 +4,7 @@ package org.namazvaxti.prayertimews.entities.concretes.time;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExtraTime {
+public class ExtraTime implements Cloneable{
 
     private String israk;
     private String dahve;
@@ -23,4 +24,9 @@ public class ExtraTime {
     private String midnight;
     private String teheccud;
     private String seher;
+
+    public Object clone()throws CloneNotSupportedException{
+        return super.clone();
+    }
+
 }

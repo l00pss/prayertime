@@ -17,7 +17,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class PrayerTimeWsApplication {
     public static void main(String[] args) {
         SpringApplication.run(PrayerTimeWsApplication.class, args);
+
     }
+
+
 
     @Bean
     public Docket api() {

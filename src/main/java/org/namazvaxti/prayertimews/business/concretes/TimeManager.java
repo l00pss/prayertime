@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.json.JsonStructure;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TimeManager implements TimeService {
@@ -28,8 +29,8 @@ public class TimeManager implements TimeService {
 
 
     @Override
-    public SuccessDataResult<JsonStructure> getAllDataAsJson(Integer indexOfCity) throws BaseException{
-        return new SuccessDataResult<>(this.timeRepository.getAllDataAsJson(indexOfCity), SuccessMessages.FIND_BY_INDEX.getValue());
+    public SuccessDataResult<Map<Integer,City>>getAllDataAsYearly(Integer indexOfCity) throws BaseException, CloneNotSupportedException {
+        return new SuccessDataResult<Map<Integer,City>>(this.timeRepository.getAllDataAsYearly(indexOfCity), SuccessMessages.FIND_BY_INDEX.getValue());
     }
 
     @Override
@@ -46,17 +47,18 @@ public class TimeManager implements TimeService {
 
     @Override
     public SuccessDataResult<City> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException {
+
         return null;
     }
 
     @Override
-    public SuccessDataResult<List<City>> getWeeklyDates(Integer indexOfCity) {
-        return null;
+    public SuccessDataResult<Map<Integer,City>> getWeeklyDates(Integer indexOfCity) throws BaseException {
+        return new SuccessDataResult<>(this.timeRepository.getWeeklyDates(indexOfCity),SuccessMessages.FIND_BY_INDEX.getValue());
     }
 
     @Override
-    public SuccessDataResult<List<City>> getMonthDates(Integer indexOfCity) {
-        return null;
+    public SuccessDataResult<Map<Integer,City>> getMonthDates(Integer indexOfCity) throws BaseException {
+        return new SuccessDataResult<>(this.timeRepository.getMonthlyDates(indexOfCity),SuccessMessages.FIND_BY_INDEX.getValue());
     }
 
 

@@ -4,6 +4,7 @@ package org.namazvaxti.prayertimews.entities.concretes.time;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseTime {
+public class BaseTime implements Cloneable {
 
     private String dayOfYear;
     private String todayDate;
@@ -25,4 +26,9 @@ public class BaseTime {
     private String ikindi;
     private String axsam;
     private String yatsi;
+
+    public Object clone()throws CloneNotSupportedException{
+        return super.clone();
+    }
+
 }

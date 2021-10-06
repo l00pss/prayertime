@@ -1,5 +1,6 @@
 package org.namazvaxti.prayertimews.dataAccess.concretes;
 
+import org.namazvaxti.prayertimews.core.utilities.exceptions.BaseException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.DataNotFoundException;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.NullValueException;
 import org.namazvaxti.prayertimews.core.utilities.messages.error.ErrorMessages;
@@ -12,7 +13,6 @@ import org.namazvaxti.prayertimews.entities.concretes.time.BaseTime;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.namazvaxti.prayertimews.entities.concretes.time.ExtraTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import javax.json.Json;
@@ -22,16 +22,10 @@ import javax.json.JsonStructure;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Repository
-@Scope(scopeName = "prototype")
 public class TimeRepositoryManager implements TimeRepository {
-
-
-
     public static String DATA_PATH = "src/main/java/org/namazvaxti/prayertimews/dataAccess/data/json/";
 
     private  CheckerCurrentData checkerCurrentData;
@@ -39,32 +33,37 @@ public class TimeRepositoryManager implements TimeRepository {
     private  City city;
     private  BaseTime baseTime;
     private  ExtraTime extraTime;
-    private CityBean cityBean;
 
     @Autowired
     public TimeRepositoryManager(CheckerCurrentData checkerCurrentData, ReadDataFromJson readDataFromJson,
-                                 City city, BaseTime baseTime, ExtraTime extraTime, CityBean cityBean) {
+                                 City city, BaseTime baseTime, ExtraTime extraTime) {
         this.checkerCurrentData = checkerCurrentData;
         this.readDataFromJson = readDataFromJson;
         this.city = city;
         this.baseTime = baseTime;
         this.extraTime = extraTime;
-        this.cityBean = cityBean;
     }
+
+
+
+
 
     private JsonStructure getAllData(Integer indexOfCity) throws DataNotFoundException, NullValueException {
         if (indexOfCity == null)throw new NullValueException();
-        if(checkerCurrentData.hasDataInLocalRepository(indexOfCity)
-                && checkerCurrentData.isCurrentDataInLocalRepository(indexOfCity))
-            return readDataFromJson.readAllDataFromLocalRepository(indexOfCity);
+        if(checkerCurrentData.hasDataInLocalRepository(indexOfCity) && checkerCurrentData.isCurrentDataInLocalRepository(indexOfCity))
+            return (JsonStructure) readDataFromJson.readAllDataFromLocalRepository(indexOfCity);
         else {
             throw new DataNotFoundException(ErrorMessages.DATA_NOT_FOUND.getValue());
         }
     }
 
     @Override
-    public JsonStructure getAllDataAsJson(Integer indexOfCity) throws DataNotFoundException, NullValueException {
-        return getAllData(indexOfCity);
+    public Map<Integer,City> getAllDataAsYearly(Integer indexOfCity) throws DataNotFoundException, NullValueException, CloneNotSupportedException {
+        Map<Integer,City> map = new HashMap<>();
+        for (int i = 0 ; i < DayHelper.getCountOfYear() ; i++){
+            map.putIfAbsent(i+1,new City(getCity(indexOfCity,i)));
+        }
+        return map;
     }
 
     @Override
@@ -88,7 +87,7 @@ public class TimeRepositoryManager implements TimeRepository {
 
     @Override
     public City getDatesOfDay(Integer idexOfCity) throws DataNotFoundException, NullValueException {
-        return getCityBean(idexOfCity,DayHelper.getDayOfYear());
+        return getCity(idexOfCity,DayHelper.getDayOfYear());
     }
 
     @Override
@@ -97,17 +96,27 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
     @Override
-    public List<City> getWeeklyDates(Integer idexOfCity) {
-        return null;
+    public Map<Integer,City> getWeeklyDates(Integer indexOfCity) throws DataNotFoundException, NullValueException {
+        Map<Integer,City> map = new HashMap<>();
+        int k = DayHelper.getDayOfYear();
+        for (int i = k; i <= k+7 ; i++ ){
+            map.putIfAbsent(i,new City(getCity(indexOfCity,i)));
+        }
+        return map;
     }
 
     @Override
-    public List<City> getMonthlyDates(Integer idexOfCity) {
-        return null;
+    public Map<Integer,City> getMonthlyDates(Integer indexOfCity) throws DataNotFoundException, NullValueException {
+        Map<Integer,City> map = new HashMap<>();
+        int k = DayHelper.getDayOfYear();
+        for (int i = k; i <= k+30 ; i++ ){
+            map.putIfAbsent(i,new City(getCity(indexOfCity,i)));
+        }
+        return map;
     }
 
 
-    private City getCityBean(int indexOfCity, int datOfYear) throws DataNotFoundException, NullValueException {
+    private City getCity(int indexOfCity, int datOfYear) throws DataNotFoundException, NullValueException {
         var jsonStructure = getAllData(indexOfCity).asJsonObject().get("@attributes").asJsonObject();
         var times = getAllData(indexOfCity).asJsonObject().get("vakit").asJsonArray().get(datOfYear).asJsonObject();
         city.setDayOfYear(jsonStructure.getString("ID"));

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Scope(scopeName = "prototype")
 public class CityBean {
     private int id;
     private int indexOfCity;

@@ -1,5 +1,6 @@
 package org.namazvaxti.prayertimews.api.json;
 
+import io.swagger.models.auth.In;
 import org.namazvaxti.prayertimews.business.abstracts.TimeService;
 import org.namazvaxti.prayertimews.client.abstracts.ClientServer;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.*;
@@ -48,9 +49,9 @@ public class DateControllerAsJson {
     }
 
     @SuppressWarnings("unchecked")
-    @GetMapping("/allDataAsJson/{indexOfCity}")
-    public ResponseEntity<DataResult<JsonStructure>> getAllDataAsJson(@Param("indexOfCity") Integer indexOfCity) throws BaseException {
-        return new ResponseEntity<DataResult<JsonStructure>>(timeService.getAllDataAsJson(indexOfCity), HttpStatus.OK);
+    @GetMapping("/allDataYearly")
+    public ResponseEntity<DataResult<Map<Integer,City>>> getAllDataYearly(@RequestParam("indexOfCity") Integer indexOfCity) throws BaseException, CloneNotSupportedException {
+        return new ResponseEntity<DataResult<Map<Integer,City>>>(timeService.getAllDataAsYearly(indexOfCity), HttpStatus.OK);
     }
 
 
@@ -66,15 +67,16 @@ public class DateControllerAsJson {
         return new ResponseEntity<DataResult<City>>(HttpStatus.OK);
     }
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/weeklydates/{indexOfCity}")
-    public ResponseEntity<DataResult<List<City>>> getWeeklyDates(@Param("indexOfCity") Integer indexOfCity){
-        return new ResponseEntity<DataResult<List<City>>>(HttpStatus.OK);
+    public ResponseEntity<DataResult<Map<Integer,City>>> getWeeklyDates(@Param("indexOfCity") Integer indexOfCity) throws BaseException {
+        return new ResponseEntity<DataResult<Map<Integer,City>>>(this.timeService.getWeeklyDates(indexOfCity),HttpStatus.OK);
     }
 
 
     @GetMapping("/monthlydates/{indexOfCity}")
-    public ResponseEntity<DataResult<List<City>>> getMonthlyDates(@Param("indexOfCity") Integer indexOfCity){
-        return new ResponseEntity<DataResult<List<City>>>(HttpStatus.OK);
+    public ResponseEntity<DataResult<Map<Integer,City>>> getMonthlyDates(@Param("indexOfCity") Integer indexOfCity) throws BaseException {
+        return new ResponseEntity<DataResult<Map<Integer,City>>>(this.timeService.getMonthDates(indexOfCity),HttpStatus.OK);
     }
 
 
