@@ -1,6 +1,5 @@
 package org.namazvaxti.prayertimews.api.json;
 
-import io.swagger.models.auth.In;
 import org.namazvaxti.prayertimews.business.abstracts.TimeService;
 import org.namazvaxti.prayertimews.client.abstracts.ClientServer;
 import org.namazvaxti.prayertimews.core.utilities.exceptions.*;
