@@ -16,7 +16,7 @@ public interface TimeRepository {
     List<CityBean> getListOfCities();
 
     City getDatesOfDay(Integer idexOfCity) throws BaseException;
-    City getDatesOfDay(Integer idexOfCity, Date date);
+    City getDatesOfDay(Integer idexOfCity, Date date) throws DataNotFoundException, NullValueException;
 
     Map<Integer,City> getWeeklyDates(Integer idexOfCity) throws BaseException;
     Map<Integer,City> getMonthlyDates(Integer idexOfCity)throws BaseException;

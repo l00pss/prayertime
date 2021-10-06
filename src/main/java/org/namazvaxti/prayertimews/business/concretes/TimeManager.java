@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.json.JsonStructure;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +48,9 @@ public class TimeManager implements TimeService {
     }
 
     @Override
-    public SuccessDataResult<City> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException {
-
-        return null;
+    public SuccessDataResult<City> getDatesOfDay(Integer indexOfCity, LocalDate date) throws BaseException {
+        Date date1 = Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        return new SuccessDataResult<City>(this.timeRepository.getDatesOfDay(indexOfCity,date1),SuccessMessages.OK.getValue());
     }
 
     @Override

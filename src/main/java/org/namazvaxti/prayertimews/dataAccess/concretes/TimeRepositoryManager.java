@@ -91,8 +91,9 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
     @Override
-    public City getDatesOfDay(Integer idexOfCity, Date date) {
-        return null;
+    public City getDatesOfDay(Integer idexOfCity, Date date) throws DataNotFoundException, NullValueException {
+        int day = DayHelper.getDateRefactor(date);
+        return getCity(idexOfCity,day);
     }
 
     @Override

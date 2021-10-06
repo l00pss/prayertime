@@ -63,8 +63,8 @@ public class DateControllerAsJson {
 
     @PostMapping("/currentdate")
     public ResponseEntity<DataResult<City>> getDatesOfCurrentDay(@RequestParam("indexOfCity") Integer indexOfCity,
-                                                                 @RequestParam("date") @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate date){
-        return new ResponseEntity<DataResult<City>>(HttpStatus.OK);
+                                                                 @RequestParam("date") @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate date) throws BaseException {
+        return new ResponseEntity<DataResult<City>>(this.timeService.getDatesOfDay(indexOfCity,date),HttpStatus.OK);
     }
 
     @SuppressWarnings("unchecked")

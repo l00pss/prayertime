@@ -6,6 +6,7 @@ import org.namazvaxti.prayertimews.entities.concretes.CityBean;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 
 import javax.json.JsonStructure;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public interface TimeService {
     SuccessDataResult<List<CityBean>> getListOfCities() throws BaseException;
 
     SuccessDataResult<City> getDatesOfDay(Integer indexOfCity)throws BaseException;
-    SuccessDataResult<City> getDatesOfDay(Integer idexOfCity, Date date) throws BaseException;
+    SuccessDataResult<City> getDatesOfDay(Integer idexOfCity, LocalDate date) throws BaseException;
 
     SuccessDataResult<Map<Integer,City>> getWeeklyDates(Integer indexOfCity)throws BaseException;
     SuccessDataResult<Map<Integer,City>> getMonthDates(Integer indexOfCity)throws BaseException;

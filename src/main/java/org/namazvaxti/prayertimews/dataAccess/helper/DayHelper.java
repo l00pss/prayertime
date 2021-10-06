@@ -16,4 +16,10 @@ public class DayHelper {
     public static Integer getCountOfYear(){
         return 365;
     }
+    public static Integer getDateRefactor(Date date){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_YEAR)-1;
+    }
+
 }
