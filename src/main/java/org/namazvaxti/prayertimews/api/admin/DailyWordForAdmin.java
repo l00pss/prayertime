@@ -26,8 +26,6 @@ public class DailyWordForAdmin {
 
     @GetMapping("/addWord")
     public ResponseEntity<DataResult<DailyWord>> insert(@RequestParam DailyWord context){
-
-
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class DailyWord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "CONTEXT")
     private String context;

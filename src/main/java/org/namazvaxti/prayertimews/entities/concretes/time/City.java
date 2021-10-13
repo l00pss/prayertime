@@ -2,7 +2,6 @@ package org.namazvaxti.prayertimews.entities.concretes.time;
 
 
 import lombok.*;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 @Component
 @Data
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class City implements  Cloneable{
     private static final transient String countryName = "Azərbaycan";
-    private String dayOfYear;
+    private String cityIndex;
     private String cityOfName;
     private String qiblaAngle;
     private String magdeg;
@@ -22,7 +21,7 @@ public class City implements  Cloneable{
     }
 
     public City(City city){
-        this.dayOfYear = city.getDayOfYear();
+        this.cityIndex = city.getCityIndex();
         this.cityOfName = city.getCityOfName();
         this.qiblaAngle = city.getQiblaAngle();
         this.magdeg = city.getMagdeg();
