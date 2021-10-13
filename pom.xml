@@ -84,14 +84,6 @@
             <artifactId>yasson</artifactId>
             <version>1.0.8</version>
         </dependency>
-
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.json/javax.json-api &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>javax.json</groupId>-->
-        <!--            <artifactId>javax.json-api</artifactId>-->
-        <!--            <version>1.1.4</version>-->
-        <!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api -->
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>

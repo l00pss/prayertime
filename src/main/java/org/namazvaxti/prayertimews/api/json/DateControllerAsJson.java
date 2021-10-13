@@ -38,7 +38,7 @@ public class DateControllerAsJson {
 
     @PostConstruct
     public void initClientServer() throws IOException {
-        //clientServer.writerToLocalRepository();
+        clientServer.writerToLocalRepository();
     }
 
     @SuppressWarnings("unchecked")
