@@ -1,1 +1,1 @@
-web: java -jar target/java-prayertimews-0.0.2-SNAPSHOT.jar
+web: java -jar target/prayertime-ws-0.0.2.jar
