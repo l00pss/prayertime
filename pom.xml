@@ -138,7 +138,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>put.your.main.class.here</mainClass>
+                            <mainClass>src.main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
