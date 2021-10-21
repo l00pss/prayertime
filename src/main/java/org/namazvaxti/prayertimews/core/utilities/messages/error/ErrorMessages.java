@@ -10,7 +10,8 @@ public enum ErrorMessages implements Messages {
     UNKNOWN("Bilinməyən Xəta. Bir neçə dəqiqə sonra təkrar cəhd edin!"),
     NULL_VALUE("Boş dəyər keçilə bilməz!"),
     INVALID_INDEX("Yanlış şəhər indeksi!"),
-    DATA_NOT_FOUND("İstənilən index üzrə məlumat tapılmadı!");
+    DATA_NOT_FOUND("İstənilən index üzrə məlumat tapılmadı!"),
+    ILLEGAL_ARGUMENT("Düzgün olmayan istək formatı! Nümunə : 03-28-2021");
 
     private final String value;
     ErrorMessages(String value) {
