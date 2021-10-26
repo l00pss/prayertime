@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class City implements  Cloneable{
     private static final transient String countryName = "Azərbaycan";
+    private int id;
     private String cityIndex;
     private String cityOfName;
     private String qiblaAngle;

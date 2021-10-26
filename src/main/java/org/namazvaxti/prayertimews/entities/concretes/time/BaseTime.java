@@ -15,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class BaseTime implements Cloneable {
 
+    private int id;
     private String dayOfYear;
     private String todayDate;
     private String todayHijrahDate;

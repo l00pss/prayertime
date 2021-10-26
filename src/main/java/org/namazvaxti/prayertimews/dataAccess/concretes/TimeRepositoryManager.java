@@ -117,19 +117,21 @@ public class TimeRepositoryManager implements TimeRepository {
     }
 
 
-    private City getCity(int indexOfCity, int datOfYear) throws DataNotFoundException, NullValueException {
+    private City getCity(int indexOfCity, int dayOfYear) throws DataNotFoundException, NullValueException {
         var jsonStructure = getAllData(indexOfCity).asJsonObject().get("@attributes").asJsonObject();
-        var times = getAllData(indexOfCity).asJsonObject().get("vakit").asJsonArray().get(datOfYear).asJsonObject();
+        var times = getAllData(indexOfCity).asJsonObject().get("vakit").asJsonArray().get(dayOfYear).asJsonObject();
+        city.setId(dayOfYear);
         city.setCityIndex(jsonStructure.getString("ID"));
         city.setCityOfName(jsonStructure.getString("cityNameEN"));
         city.setMagdeg(jsonStructure.getString("magdeg"));
         city.setQiblaAngle(jsonStructure.getString("qiblaangle"));
-        city.setBaseTime(getBaseTime(times));
-        city.setExtraTime(getExtraTime(times));
+        city.setBaseTime(getBaseTime(times,dayOfYear));
+        city.setExtraTime(getExtraTime(times,dayOfYear));
         return city;
     }
 
-    private BaseTime getBaseTime(JsonObject times){
+    private BaseTime getBaseTime(JsonObject times,int dayOfYear){
+        baseTime.setId(dayOfYear);
         baseTime.setDayOfYear(times.get("@attributes").asJsonObject().getString("gun"));
         baseTime.setTodayDate(times.get("@attributes").asJsonObject().getString("tarih"));
         baseTime.setTodayHijrahDate(times.get("@attributes").asJsonObject().getString("hicri"));
@@ -146,7 +148,8 @@ public class TimeRepositoryManager implements TimeRepository {
         return baseTime;
     }
 
-    private ExtraTime getExtraTime(JsonObject times){
+    private ExtraTime getExtraTime(JsonObject times,int dayOfYear){
+        extraTime.setId(dayOfYear);
         extraTime.setIsrak(times.getString("israk"));
         extraTime.setDahve(times.getString("dahve"));
         extraTime.setKerahat(times.getString("kerahet"));

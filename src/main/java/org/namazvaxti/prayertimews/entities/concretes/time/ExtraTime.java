@@ -14,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class ExtraTime implements Cloneable{
 
+    private int id;
     private String israk;
     private String dahve;
     private String kerahat;
