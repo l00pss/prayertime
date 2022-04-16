@@ -1,1 +1,1 @@
-web: java -jar target/prayertime-ws-0.0.2.jar
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* org.namazvaxti.prayertimews.PrayerTimeWsApplication
