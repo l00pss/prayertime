@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @EnableSwagger2
-@PropertySource("classpath:application-${spring.profiles.active:default}.properties")
+@PropertySource("classpath:application-${spring.profiles.active:prod}.properties")
 public class PrayerTimeWsApplication {
     public static void main(String[] args) {
         SpringApplication.run(PrayerTimeWsApplication.class, args);
