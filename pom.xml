@@ -130,9 +130,9 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <appName>prayer-time-ws</appName>
+                    <appName>PrayerTimeWs</appName>
                     <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* org.namazvaxti.prayertimews.PrayerTimeWsApplication</web>
                     </processTypes>
                 </configuration>
             </plugin>
