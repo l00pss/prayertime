@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* org.namazvaxti.prayertimews.PrayerTimeWsApplication
+web: java $JAVA_OPTS -Dspring.profiles.active=prod -jar target/PrayerTimeWS-0.0.2-SNAPSHOT.jar
