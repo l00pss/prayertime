@@ -13,6 +13,7 @@ import org.namazvaxti.prayertimews.entities.concretes.time.BaseTime;
 import org.namazvaxti.prayertimews.entities.concretes.time.City;
 import org.namazvaxti.prayertimews.entities.concretes.time.ExtraTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.json.Json;
@@ -24,7 +25,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
-@Repository
+@Component
 public class TimeRepositoryManager implements TimeRepository {
     public static String DATA_PATH = "src/main/java/org/namazvaxti/prayertimews/dataAccess/data/json/";
 
