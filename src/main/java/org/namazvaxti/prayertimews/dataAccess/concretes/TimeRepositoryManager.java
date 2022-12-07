@@ -119,8 +119,8 @@ public class TimeRepositoryManager implements TimeRepository {
 
 
     private City getCity(int indexOfCity, int dayOfYear) throws DataNotFoundException, NullValueException {
-        var jsonStructure = getAllData(indexOfCity).asJsonObject().get("@attributes").asJsonObject();
-        var times = getAllData(indexOfCity).asJsonObject().get("vakit").asJsonArray().get(dayOfYear).asJsonObject();
+        JsonObject jsonStructure = getAllData(indexOfCity).asJsonObject().get("@attributes").asJsonObject();
+        JsonObject times = getAllData(indexOfCity).asJsonObject().get("vakit").asJsonArray().get(dayOfYear).asJsonObject();
         city.setId(dayOfYear);
         city.setCityIndex(jsonStructure.getString("ID"));
         city.setCityOfName(jsonStructure.getString("cityNameEN"));
